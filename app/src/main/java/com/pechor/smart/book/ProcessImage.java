@@ -1,12 +1,10 @@
 package com.pechor.smart.book;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class ProcessText extends AppCompatActivity {
-
+public class ProcessImage extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,12 +18,11 @@ public class ProcessText extends AppCompatActivity {
 // Without the NEW_TASK flag, the existing "base" activity
 // would be moved to the front as well.
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(WebviewActivity.URL_PARAM, "https://www.google.com/search?q="+text.toString().replace(' ','+'));
+        intent.putExtra(WebviewActivity.URL_PARAM, "https://www.google.com/search?tbm=isch&q="+text.toString().replace(' ','+'));
 // The activity must be started from the application context.
 // I'm not sure why exactly.
         this.getApplicationContext().startActivity(intent);
 
         finish();
     }
-
 }

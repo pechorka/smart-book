@@ -8,8 +8,8 @@ import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class TextDialogActivity extends Activity {
-    public static final String TEXT_TO_PROCESS_PARAM = "TEXT_TO_PROCESS";
+public class WebviewActivity extends Activity {
+    public static final String URL_PARAM = "URL_PARAM";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +19,7 @@ public class TextDialogActivity extends Activity {
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
 
-        String text = getIntent().getStringExtra(TEXT_TO_PROCESS_PARAM);
+        String url = getIntent().getStringExtra(URL_PARAM);
 
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -27,7 +27,7 @@ public class TextDialogActivity extends Activity {
 
         WebView wv =  dialog.findViewById(R.id.webview);
 
-        wv.loadUrl("https:\\www.google.com/search?q="+text.replace(' ','+'));
+        wv.loadUrl(url);
         wv.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -40,7 +40,7 @@ public class TextDialogActivity extends Activity {
         dialog.setCanceledOnTouchOutside(true);
         dialog.setCancelable(true);
 
-        dialog.setOnDismissListener(dialogInterface -> TextDialogActivity.this.finish());
+        dialog.setOnDismissListener(dialogInterface -> WebviewActivity.this.finish());
 
         dialog.show();
     }
